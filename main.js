@@ -1,10 +1,6 @@
-var wagner = require('wagner-core');
-var express = require('express');
+var singelton = require('./config/singelton')();
 
-var mongo = require('./config/mongo_init')(wagner);
+singelton.server.use('/user', singelton.userController);
 
-var server = express();
-server.use('/user', require('./user/user_controller')(wagner));
-
-server.listen(3000);
+singelton.server.listen(3000);
 console.log("server is listening on port 3000");
