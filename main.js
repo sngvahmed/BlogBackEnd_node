@@ -1,6 +1,10 @@
-var singelton = require('./config/singelton')();
+var express = require('express');
 
-singelton.server.use('/user', singelton.userController);
+var mongoInit = require('./config/mongo_init')();
+var userController = require('./user/user_controller')();
 
-singelton.server.listen(3000);
+var server = express();
+server.use('/user', userController);
+server.listen(3000);
+
 console.log("server is listening on port 3000");

@@ -1,6 +1,6 @@
-var mongodb = require('mongodb');
+var mongoose = require('mongoose');
 
-module.exports = function(mongoose) {
+module.exports = function() {
     var mongo = {};
 
     function setUp() {

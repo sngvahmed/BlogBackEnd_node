@@ -1,11 +1,13 @@
 var status = require('http-status');
+var mongoose = require('mongoose');
+var User = require('./user_schema');
 
-module.exports = function(singelton) {
+module.exports = function() {
     var app = {};
 
     app.getUser = function(errorCallback, successCallback) {
 
-        singelton.User.find({ username: "sngv" }, function(error, user) {
+        User.find(function(error, user) {
 
             if (error) {
                 errorCallback(status.INTERNAL_SERVER_ERROR, { error: error.toString() });
@@ -15,7 +17,6 @@ module.exports = function(singelton) {
             }
             successCallback(user);
         });
-
     };
 
 
