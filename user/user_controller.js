@@ -15,7 +15,6 @@ var userController = {
 
     },
     constructor: function() {
-        console.log();
         userController.api.get('/', userController.getUser);
     }
 }
