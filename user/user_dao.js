@@ -2,23 +2,19 @@ var status = require('http-status');
 var mongoose = require('mongoose');
 var User = require('./user_schema');
 
-module.exports = function() {
-    var app = {};
+var userDao = {
 
-    app.getUser = function(errorCallback, successCallback) {
+    getUser: function(errorCallback, successCallback) {
 
-        User.find(function(error, user) {
+        User.find({ username: "sngv" }, function(error, user) {
 
-            if (error) {
-                errorCallback(status.INTERNAL_SERVER_ERROR, { error: error.toString() });
-            }
-            if (!user) {
-                errorCallback(status.NOT_FOUND);
-            }
+            if (error) { errorCallback(status.INTERNAL_SERVER_ERROR, { error: error.toString() }); }
+
+            if (!user) { errorCallback(status.NOT_FOUND); }
+
             successCallback(user);
         });
-    };
-
-
-    return app;
+    }
 }
+
+module.exports = userDao;

@@ -1,22 +1,25 @@
 var express = require('express');
 var status = require('http-status');
-var userDao = require('./user_dao')();
+var userDao = require('./user_dao');
 
-function userController() {
+var userController = {
+    self: this,
+    api: express.Router(),
 
-    var api = express.Router();
-
-    api.get('/', function(req, res) {
-        console.log("here");
+    getUser: function(req, res) {
         userDao.getUser(function(statusCode, msg) {
             return res.status(statusCode).json({ error: msg });
         }, function(result) {
             res.json({ "user": result });
         });
 
-    });
-
-    return api;
+    },
+    constructor: function() {
+        console.log();
+        userController.api.get('/', userController.getUser);
+    }
 }
+
+userController.constructor();
 
 module.exports = userController;
