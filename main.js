@@ -1,6 +1,6 @@
 var express = require('express');
 
-var mongoInit = require('./config/mongo_init');
+// var mongoInit = require('./config/mongo_init');
 var userController = require('./user/user_controller');
 
 var server = express();

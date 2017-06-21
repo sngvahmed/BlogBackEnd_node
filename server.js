@@ -3,7 +3,7 @@ var bodyParser = require('body-parser');
 var wagner = require('wagner-core');
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
-var schema = require('./user_schema');
+var schema = require('./user/user_schema');
 var bluebird = require('bluebird');
 
 module.exports = function() {
